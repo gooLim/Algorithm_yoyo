@@ -1,9 +1,9 @@
 package yoyo_1;
 
-import java.io.*;
-import java.util.StringTokenizer;
+import java.io.IOException;
+import java.util.Scanner;
 
-// 소수 구하기
+//// 소수 구하기 (배열 생성)
 public class Main {
     public static void main(String[] args) throws IOException {
         new Main();
@@ -33,29 +33,25 @@ public class Main {
         return prime_number;
     }
     private int[] read_Input() throws IOException {
-        int count = 0;
-        int index = 0;
-        int[] num_data;
-        String data = "";
+        int data_count;
+        int data;
+        int[] data_arr;
 
-        BufferedReader br = new BufferedReader(new FileReader("data.txt"));
-        count = Integer.parseInt( br.readLine() );
+        Scanner sc = new Scanner(System.in);
+        data_count = sc.nextInt();
 
-        if ( count > 100 ) {
-            System.exit(0);
+        while( data_count > 100 || data_count <= 0) {
+            data_count = sc.nextInt();
         }
-        num_data = new int[count];
 
-        data = br.readLine();
-        StringTokenizer tokens = new StringTokenizer(data);
-
-        while ( tokens.hasMoreTokens() ) {
-            int tmp = Integer.parseInt(tokens.nextToken(" "));
-            if (tmp <= 0 || tmp > 1000) {
-                System.exit(0);
+        data_arr = new int[data_count];
+        for ( int i = 0; i < data_count; i++) {
+            data = sc.nextInt();
+            while(data > 1000 || data <= 0) {
+                data = sc.nextInt();
             }
-            num_data[index++] = tmp;
+            data_arr[i] = data;
         }
-        return num_data;
+        return data_arr;
     }
 }
